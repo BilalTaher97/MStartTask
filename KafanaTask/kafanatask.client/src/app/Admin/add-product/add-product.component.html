@@ -1,0 +1,81 @@
+<div class="container">
+  <h3>Add Product</h3>
+
+  <form (ngSubmit)="onSubmit()">
+    <!-- Name EN -->
+    <div class="mb-2">
+      <input type="text" class="form-control"
+             name="nameEn"
+             [(ngModel)]="product.nameEn"
+             (ngModelChange)="onNameEnChange()"
+             placeholder="Enter product name (English)" required>
+    </div>
+
+    <!-- Name AR -->
+    <div class="mb-2">
+      <input type="text" class="form-control"
+             name="nameAr"
+             [(ngModel)]="product.nameAr"
+             placeholder="اسم المنتج (عربي)" readonly>
+    </div>
+
+    <!-- Description EN -->
+    <div class="mb-2">
+      <textarea class="form-control" [(ngModel)]="product.descriptionEn"
+                name="descriptionEn" placeholder="Description (EN)">
+      </textarea>
+    </div>
+
+    <!-- Description AR -->
+    <div class="mb-2">
+      <textarea class="form-control" [(ngModel)]="product.descriptionAr"
+                name="descriptionAr" placeholder="Description (AR)">
+      </textarea>
+    </div>
+
+    <!-- Status EN (Dropdown) -->
+    <div class="mb-2">
+      <select class="form-control"
+              name="statusEn"
+              [(ngModel)]="product.statusEn"
+              (change)="onStatusEnChange()" required>
+        <option value="" disabled selected>Select Status (EN)</option>
+        <option value="Active">Active</option>
+        <option value="Not Active">Not Active</option>
+        <option value="Deleted">Deleted</option>
+        <option value="Expired">Expired</option>
+      </select>
+    </div>
+
+    <!-- Status AR (Readonly auto-filled) -->
+    <div class="mb-2">
+      <input type="text" class="form-control"
+             name="statusAr"
+             [(ngModel)]="product.statusAr"
+             placeholder="الحالة (عربي)" readonly>
+    </div>
+
+    <!-- Amount -->
+    <div class="mb-2">
+      <input type="number" class="form-control"
+             name="amount"
+             [(ngModel)]="product.amount"
+             placeholder="Amount" required>
+    </div>
+
+    <!-- Currency -->
+    <div class="mb-2">
+      <input type="text" class="form-control"
+             name="currency"
+             [(ngModel)]="product.currency"
+             placeholder="Currency" required>
+    </div>
+
+    <!-- Submit -->
+    <button class="btn btn-success">Add Product</button>
+  </form>
+
+  <!-- Messages -->
+  <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+</div>

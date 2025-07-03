@@ -1,0 +1,41 @@
+<div class="container mt-5" [dir]="language === 'ar' ? 'rtl' : 'ltr'">
+
+
+  <div class="d-flex justify-content-between mb-3">
+    <button [routerLink]="['/ShowOrders', customerId]"
+            class="btn btn-primary btn-sm"
+            [disabled]="!customerId">
+      {{ labels[language]?.viewOrders }}
+    </button>
+  </div>
+
+ 
+  <button class="btn btn-secondary btn-sm mb-3" (click)="toggleLanguage()">
+    {{ labels[language]?.toggle }}
+  </button>
+
+
+  <div *ngFor="let product of products" class="card mb-4" style="width: 100%; max-width: 400px;">
+    <div class="card-body">
+      <h5 class="card-title">{{ product.name?.[language] }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">
+        {{ labels[language]?.status }}:
+        <span [ngClass]="product.isActive ? 'text-success' : 'text-danger'">
+          {{ product.isActive ? labels[language]?.active : labels[language]?.inactive }}
+        </span>
+      </h6>
+      <p class="card-text">{{ product.description?.[language] }}</p>
+      <ul class="list-group list-group-flush mb-3">
+        <li class="list-group-item">{{ labels[language]?.Amount }}: {{ product.amount }}</li>
+        <li class="list-group-item">
+          {{ labels[language].currency }}: {{ product.currency }}
+        </li>
+      </ul>
+
+      <button class="btn btn-primary w-100">
+        {{ language === 'en' ? 'Buy Now' : 'شراء' }}
+      </button>
+    </div>
+  </div>
+
+</div>

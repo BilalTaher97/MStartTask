@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:62162",
+"RedirectUrl": "",
+"LaunchCommand": "npm start",
+"WorkingDirectory": "C:\\Users\\HP\\OneDrive\\Desktop\\Kafana_Task\\KafanaTask\\KafanaTask.Server\\..\\kafanatask.client",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}

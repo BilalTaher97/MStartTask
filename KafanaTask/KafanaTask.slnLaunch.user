@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "kafanatask.client\\kafanatask.client.esproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "KafanaTask.Server\\KafanaTask.Server.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

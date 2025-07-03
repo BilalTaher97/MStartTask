@@ -1,0 +1,49 @@
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name (EN)</th>
+        <th>Name (AR)</th>
+        <th>Description (EN)</th>
+        <th>Description (AR)</th>
+        <th>Status</th>
+        <th>Amount</th>
+        <th>Currency</th>
+        <th>Server DateTime</th>
+        <th>UTC DateTime</th>
+        <th>Update DateTime UTC</th>
+        <th>Orders Count</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let p of products">
+        <td>{{ p.id }}</td>
+        <td>{{ p.nameEn }}</td>
+        <td>{{ p.nameAr }}</td>
+        <td>{{ p.descriptionEn }}</td>
+        <td>{{ p.descriptionAr }}</td>
+
+        <td>
+          <select class="form-select form-select-sm"
+                  [(ngModel)]="p.statusEn"
+                  (change)="updateStatus(p)">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </td>
+
+        <td>{{ p.amount }}</td>
+        <td>{{ p.currency }}</td>
+        <td>{{ p.serverDateTime | date: 'short' }}</td>
+        <td>{{ p.dateTimeUtc | date: 'short' }}</td>
+        <td>{{ p.updateDateTimeUtc ? (p.updateDateTimeUtc | date: 'short') : '—' }}</td>
+        <td>{{ p.orders?.length || 0 }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button (click)="previousPage()" [disabled]="currentPage === 1">← Previous</button>
+  <button (click)="nextPage()">Next →</button>
+</div>

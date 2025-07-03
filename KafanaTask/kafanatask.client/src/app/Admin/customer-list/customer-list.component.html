@@ -1,0 +1,102 @@
+<div class="form-inline mb-3">
+  <input type="number" class="form-control me-2" [(ngModel)]="searchId" placeholder="Enter Customer ID">
+  <button class="btn btn-primary" (click)="searchCustomer()">Search</button>
+</div>
+
+<div *ngIf="searchedCustomer" class="alert alert-info">
+  <h5>Customer Found:</h5>
+  <p><strong>Name:</strong> {{ searchedCustomer.nameEn }}</p>
+  <p><strong>Email:</strong> {{ searchedCustomer.email }}</p>
+  <p><strong>Status:</strong> {{ searchedCustomer.statusEn }}</p>
+  <button class="btn btn-secondary mt-2" (click)="toggleDetails()">Show Full Details</button>
+</div>
+
+<div *ngIf="searchError" class="alert alert-danger">
+  {{ searchError }}
+</div>
+
+<div *ngIf="showDetails && searchedCustomer" class="mt-3 alert alert-secondary">
+  <p><strong>ID:</strong> {{ searchedCustomer.id }}</p>
+  <p><strong>Name (AR):</strong> {{ searchedCustomer.nameAr }}</p>
+  <p><strong>Phone:</strong> {{ searchedCustomer.phone }}</p>
+  <p><strong>Gender:</strong> {{ searchedCustomer.genderEn }} / {{ searchedCustomer.genderAr }}</p>
+  <p><strong>Date of Birth:</strong> {{ searchedCustomer.dateOfBirth }}</p>
+  <p><strong>Server Time:</strong> {{ searchedCustomer.serverDateTime }}</p>
+  <p><strong>UTC Time:</strong> {{ searchedCustomer.dateTimeUtc }}</p>
+  <p><strong>Last Login:</strong> {{ searchedCustomer.lastLoginDateTimeUtc }}</p>
+  <p><strong>Update Date:</strong> {{ searchedCustomer.updateDateTimeUtc }}</p>
+  <p><strong>Orders Count:</strong> {{ searchedCustomer.orders?.length }}</p>
+  <p>
+    <strong>Photo:</strong>
+    <img *ngIf="searchedCustomer.photo" [src]="'data:image/jpeg;base64,' + searchedCustomer.photo" width="50" height="50">
+  </p>
+</div>
+
+<button class="btn btn-danger mt-2" [disabled]="selectedCustomerIds.length === 0" (click)="deleteSelectedCustomers()">
+  Delete Selected Customers
+</button>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th><input type="checkbox" [(ngModel)]="selectAll" (change)="toggleAllSelection()" /></th>
+        <th>ID</th>
+        <th>Name (EN)</th>
+        <th>Name (AR)</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Status (EN)</th>
+        <th>Status (AR)</th>
+        <th>Gender (EN)</th>
+        <th>Gender (AR)</th>
+        <th>Date of Birth</th>
+        <th>Server DateTime</th>
+        <th>UTC DateTime</th>
+        <th>Last Login</th>
+        <th>Update Date</th>
+        <th>Photo</th>
+        <th>Orders Count</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of customers">
+        <td>
+          <input type="checkbox" [checked]="selectedCustomerIds.includes(c.id)" (change)="toggleSelection(c.id, $event)" />
+        </td>
+        <td>{{ c.id }}</td>
+        <td>{{ c.nameEn }}</td>
+        <td>{{ c.nameAr }}</td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.phone }}</td>
+        <select class="form-select form-select-sm" [(ngModel)]="c.statusEn" (change)="updateStatus(c)">
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+
+
+        <td>{{ c.genderEn }}</td>
+        <td>{{ c.genderAr }}</td>
+        <td>{{ c.dateOfBirth ? (c.dateOfBirth | date:'yyyy-MM-dd HH:mm') : 'N/A' }}</td>
+        <td>{{ c.serverDateTime ? (c.serverDateTime | date:'yyyy-MM-dd HH:mm') : 'N/A' }}</td>
+        <td>{{ c.dateTimeUtc ? (c.dateTimeUtc | date:'yyyy-MM-dd HH:mm') : 'N/A' }}</td>
+        <td>{{ c.lastLoginDateTimeUtc ? (c.lastLoginDateTimeUtc | date:'yyyy-MM-dd HH:mm') : 'N/A' }}</td>
+        <td>{{ c.updateDateTimeUtc ? (c.updateDateTimeUtc | date:'yyyy-MM-dd HH:mm') : 'N/A' }}</td>
+
+        <td>
+          <img [src]="c.photo ? 'data:image/jpeg;base64,' + c.photo : 'assets/images/no-photo.png'" width="50" height="50" />
+        </td>
+
+
+        <td>{{ c.OrdersCount ?? 'N/A' }}</td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="deleteCustomer(c.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button (click)="previousPage()" [disabled]="currentPage === 1">← Previous</button>
+  <button (click)="nextPage()">Next →</button>
+</div>

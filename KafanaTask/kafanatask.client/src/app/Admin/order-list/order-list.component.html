@@ -1,0 +1,34 @@
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Customer ID</th>
+        <th>Product ID</th>
+        <th>Total Amount</th>
+        <th>Currency</th>
+        <th>Status (EN)</th>
+        <th>Status (AR)</th>
+        <th>Server DateTime</th>
+        <th>UTC DateTime</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let o of orders">
+        <td>{{ o.id }}</td>
+        <td>{{ o.customerId }}</td>
+        <td>{{ o.productId }}</td>
+        <td>{{ o.totalAmount }}</td>
+        <td>{{ o.currency }}</td>
+        <td>{{ o.statusEn }}</td>
+        <td>{{ o.statusAr }}</td>
+        <td>{{ o.serverDateTime }}</td>
+        <td>{{ o.dateTimeUtc }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button (click)="previousPage()" [disabled]="currentPage === 1">← Previous</button>
+  <button (click)="nextPage()">Next →</button>
+</div>

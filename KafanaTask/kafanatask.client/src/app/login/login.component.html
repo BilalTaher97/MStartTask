@@ -1,0 +1,59 @@
+
+
+
+
+
+
+<div class="container mt-5" style="max-width: 400px;" [dir]="language === 'ar' ? 'rtl' : 'ltr'">
+  <div class="d-flex justify-content-end mb-3">
+    <button type="button" class="btn btn-secondary btn-sm" (click)="toggleLanguage()">
+      {{ labels[language].toggle }}
+    </button>
+  </div>
+
+  <h2 class="mb-4 text-center">{{ labels[language].title }}</h2>
+
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+    <div class="mb-3">
+      <label for="email" class="form-label">{{ labels[language].email }}</label>
+      <input type="email"
+             id="email"
+             name="email"
+             class="form-control"
+             required
+             email
+             [(ngModel)]="loginModel.email"
+             #email="ngModel" />
+      <div *ngIf="email.invalid && email.touched" class="text-danger small">
+        {{ labels[language].emailError }}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">{{ labels[language].password }}</label>
+      <input type="password"
+             id="password"
+             name="password"
+             class="form-control"
+             required
+             minlength="3"
+             [(ngModel)]="loginModel.password"
+             #password="ngModel" />
+      <div *ngIf="password.invalid && password.touched" class="text-danger small">
+        {{ labels[language].passwordError }}
+      </div>
+    </div>
+
+    <button type="submit"
+            class="btn btn-primary w-100"
+            [disabled]="loginForm.invalid">
+      {{ labels[language].submit }}
+    </button>
+  </form>
+
+  <div class="mt-3 text-center">
+    <a routerLink="/register" class="text-decoration-none">
+      {{ labels[language].registerLink }}
+    </a>
+  </div>
+</div>

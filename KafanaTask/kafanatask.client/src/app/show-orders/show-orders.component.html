@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <button class="btn btn-primary mb-3" (click)="toggleLanguage()">
+    {{ isArabic ? 'Switch to English' : 'التبديل إلى العربية' }}
+  </button>
+
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">{{ isArabic ? 'التاريخ' : 'Date' }}</th>
+        <th scope="col">{{ isArabic ? 'المبلغ الإجمالي' : 'Total Amount' }}</th>
+        <th scope="col">{{ isArabic ? 'العملة' : 'Currency' }}</th>
+        <th scope="col">{{ isArabic ? 'الحالة' : 'Status' }}</th>
+        <th scope="col">{{ isArabic ? 'الإجراءات' : 'Actions' }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.serverDateTime | date: 'short' }}</td>
+        <td>{{ order.totalAmount }}</td>
+        <td>{{ order.currency }}</td>
+        <td>{{ isArabic ? order.statusAr : order.statusEn }}</td>
+        <td>
+          <button *ngIf="order.statusEn === 'Active'"
+                  class="btn btn-danger btn-sm"
+                  (click)="cancelOrder(order.id)">
+            {{ isArabic ? 'إلغاء الطلب' : 'Cancel Order' }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
