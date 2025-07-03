@@ -1,7 +1,20 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\HP\\OneDrive\\Desktop\\Kafana_Task\\KafanaTask\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\HP\\OneDrive\\Desktop\\MStartTask\\KafanaTask\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C23A916A-EE7F-460A-8BC5-AF2635089862}|KafanaTask.Server\\KafanaTask.Server.csproj|c:\\users\\hp\\onedrive\\desktop\\mstarttask\\kafanatask\\kafanatask.server\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C23A916A-EE7F-460A-8BC5-AF2635089862}|KafanaTask.Server\\KafanaTask.Server.csproj|solutionrelative:kafanatask.server\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D0C66BF-9711-007A-A0F3-16A54E4D55BE}|kafanatask.client\\kafanatask.client.esproj|c:\\users\\hp\\onedrive\\desktop\\mstarttask\\kafanatask\\kafanatask.client\\src\\app\\service\\all-services.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{4D0C66BF-9711-007A-A0F3-16A54E4D55BE}|kafanatask.client\\kafanatask.client.esproj|solutionrelative:kafanatask.client\\src\\app\\service\\all-services.service.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D0C66BF-9711-007A-A0F3-16A54E4D55BE}|kafanatask.client\\kafanatask.client.esproj|c:\\users\\hp\\onedrive\\desktop\\mstarttask\\kafanatask\\kafanatask.client\\src\\app\\register\\register.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{4D0C66BF-9711-007A-A0F3-16A54E4D55BE}|kafanatask.client\\kafanatask.client.esproj|solutionrelative:kafanatask.client\\src\\app\\register\\register.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,6 +39,45 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "all-services.service.ts",
+              "DocumentMoniker": "C:\\Users\\HP\\OneDrive\\Desktop\\MStartTask\\KafanaTask\\kafanatask.client\\src\\app\\Service\\all-services.service.ts",
+              "RelativeDocumentMoniker": "kafanatask.client\\src\\app\\Service\\all-services.service.ts",
+              "ToolTip": "C:\\Users\\HP\\OneDrive\\Desktop\\MStartTask\\KafanaTask\\kafanatask.client\\src\\app\\Service\\all-services.service.ts*",
+              "RelativeToolTip": "kafanatask.client\\src\\app\\Service\\all-services.service.ts*",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwCAAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-07-03T20:00:57.024Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "register.component.ts",
+              "DocumentMoniker": "C:\\Users\\HP\\OneDrive\\Desktop\\MStartTask\\KafanaTask\\kafanatask.client\\src\\app\\register\\register.component.ts",
+              "RelativeDocumentMoniker": "kafanatask.client\\src\\app\\register\\register.component.ts",
+              "ToolTip": "C:\\Users\\HP\\OneDrive\\Desktop\\MStartTask\\KafanaTask\\kafanatask.client\\src\\app\\register\\register.component.ts",
+              "RelativeToolTip": "kafanatask.client\\src\\app\\register\\register.component.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-07-03T20:00:48.983Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CustomerController.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\OneDrive\\Desktop\\MStartTask\\KafanaTask\\KafanaTask.Server\\Controllers\\CustomerController.cs",
+              "RelativeDocumentMoniker": "KafanaTask.Server\\Controllers\\CustomerController.cs",
+              "ToolTip": "C:\\Users\\HP\\OneDrive\\Desktop\\MStartTask\\KafanaTask\\KafanaTask.Server\\Controllers\\CustomerController.cs*",
+              "RelativeToolTip": "KafanaTask.Server\\Controllers\\CustomerController.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-03T20:00:23.186Z",
+              "EditorCaption": ""
             }
           ]
         }

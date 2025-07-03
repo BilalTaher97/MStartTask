@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\OneDrive\\Desktop\\Kafana_Task\\KafanaTask\\KafanaTask.Server\\KafanaTask.Server.csproj": {}
+    "C:\\Users\\HP\\OneDrive\\Desktop\\MStartTask\\KafanaTask\\KafanaTask.Server\\KafanaTask.Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\OneDrive\\Desktop\\Kafana_Task\\KafanaTask\\KafanaTask.Server\\KafanaTask.Server.csproj": {
+    "C:\\Users\\HP\\OneDrive\\Desktop\\MStartTask\\KafanaTask\\KafanaTask.Server\\KafanaTask.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\OneDrive\\Desktop\\Kafana_Task\\KafanaTask\\KafanaTask.Server\\KafanaTask.Server.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\OneDrive\\Desktop\\MStartTask\\KafanaTask\\KafanaTask.Server\\KafanaTask.Server.csproj",
         "projectName": "KafanaTask.Server",
-        "projectPath": "C:\\Users\\HP\\OneDrive\\Desktop\\Kafana_Task\\KafanaTask\\KafanaTask.Server\\KafanaTask.Server.csproj",
+        "projectPath": "C:\\Users\\HP\\OneDrive\\Desktop\\MStartTask\\KafanaTask\\KafanaTask.Server\\KafanaTask.Server.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\OneDrive\\Desktop\\Kafana_Task\\KafanaTask\\KafanaTask.Server\\obj\\",
+        "outputPath": "C:\\Users\\HP\\OneDrive\\Desktop\\MStartTask\\KafanaTask\\KafanaTask.Server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

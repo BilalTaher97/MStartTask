@@ -18,7 +18,7 @@ export interface Product {
 })
 export class AllServicesService {
 
-  private apiUrl_AddUser = 'https://localhost:7152/api/Customer';
+  private apiUrl_AddUser = 'https://localhost:7152/api/Customer/register';
   private apiUrl_Login = 'https://localhost:7152/api/Customer/login';
   private apiUrl_GetAllProduct = 'https://localhost:7152/api/Customer/GetAllProduct';
   private apiUrl_GetOrdersById = 'https://localhost:7152/api/Customer/GetOrdersByCustomerID';

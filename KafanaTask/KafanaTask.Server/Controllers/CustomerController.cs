@@ -28,95 +28,98 @@ namespace KafanaTask.Server.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> AddNewUser([FromForm] RegisterCustomerDto dto)
         {
-            bool IsArabic(string input)
+            try
             {
-                if (string.IsNullOrEmpty(input))
-                    return false;
-
-                return input.Any(c => (c >= 0x0600 && c <= 0x06FF) ||
-                                      (c >= 0x0750 && c <= 0x077F) ||
-                                      (c >= 0x08A0 && c <= 0x08FF));
-            }
-
-            (string GenderAr, string GenderEn) ConvertGender(string input)
-            {
-                if (string.IsNullOrWhiteSpace(input))
-                    return ("غير معروف", "Unknown");
-
-                if (IsArabic(input))
+                bool IsArabic(string input)
                 {
-                    switch (input.Trim())
+                    if (string.IsNullOrEmpty(input))
+                        return false;
+
+                    return input.Any(c => (c >= 0x0600 && c <= 0x06FF) ||
+                                          (c >= 0x0750 && c <= 0x077F) ||
+                                          (c >= 0x08A0 && c <= 0x08FF));
+                }
+
+                (string GenderAr, string GenderEn) ConvertGender(string input)
+                {
+                    if (string.IsNullOrWhiteSpace(input))
+                        return ("غير معروف", "Unknown");
+
+                    if (IsArabic(input))
                     {
-                        case "ذكر": return ("ذكر", "Male");
-                        case "أنثى": return ("أنثى", "Female");
-                        default: return (input, "Unknown");
+                        switch (input.Trim())
+                        {
+                            case "ذكر": return ("ذكر", "Male");
+                            case "أنثى": return ("أنثى", "Female");
+                            default: return (input, "Unknown");
+                        }
                     }
+                    else
+                    {
+                        switch (input.Trim().ToLower())
+                        {
+                            case "male": return ("ذكر", "Male");
+                            case "female": return ("أنثى", "Female");
+                            default: return ("غير معروف", input);
+                        }
+                    }
+                }
+
+                var (genderAr, genderEn) = ConvertGender(dto.GenderInput);
+
+                var nowUtc = DateTime.UtcNow;
+
+                string photoFileName = null;
+
+                if (dto.Photo != null && dto.Photo.Length > 0)
+                {
+                    string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+                    if (!Directory.Exists(uploadsFolder))
+                        Directory.CreateDirectory(uploadsFolder);
+
+                    photoFileName = Guid.NewGuid().ToString() + Path.GetExtension(dto.Photo.FileName);
+                    var filePath = Path.Combine(uploadsFolder, photoFileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await dto.Photo.CopyToAsync(stream);
+                    }
+                }
+
+                var customer = new Customer
+                {
+                    NameEn = dto.NameEn ?? "",
+                    NameAr = dto.NameAr ?? "",
+                    Email = dto.Email ?? "",
+                    Phone = dto.Phone ?? "",
+                    Photo = photoFileName ?? "",
+                    PasswordHash = ComputeSha256Hash(dto.Password ?? ""),
+                    GenderAr = genderAr,
+                    GenderEn = genderEn,
+                    StatusAr = "نشط",
+                    StatusEn = "Active",
+                    LastLoginDateTimeUtc = nowUtc,
+                    UpdateDateTimeUtc = nowUtc,
+                    DateOfBirth = dto.DateOfBirth.HasValue ? DateOnly.FromDateTime(dto.DateOfBirth.Value) : null
+                };
+
+                bool result = await _customerService.AddUser(customer);
+
+                if (result)
+                {
+                    return Ok(new { message = "User Added Successfully" });
                 }
                 else
                 {
-                    switch (input.Trim().ToLower())
-                    {
-                        case "male": return ("ذكر", "Male");
-                        case "female": return ("أنثى", "Female");
-                        default: return ("غير معروف", input);
-                    }
+                    return BadRequest(new { message = "Failed to Add User (Service returned false)" });
                 }
             }
-
-            var (genderAr, genderEn) = ConvertGender(dto.GenderInput);
-
-            var nowUtc = DateTime.UtcNow;
-
-            string photoFileName = null;
-
-          
-            if (dto.Photo != null && dto.Photo.Length > 0)
+            catch (Exception ex)
             {
-                string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
-                if (!Directory.Exists(uploadsFolder))
-                    Directory.CreateDirectory(uploadsFolder);
-
-                photoFileName = Guid.NewGuid().ToString() + Path.GetExtension(dto.Photo.FileName);
-                var filePath = Path.Combine(uploadsFolder, photoFileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await dto.Photo.CopyToAsync(stream);
-                }
+                return BadRequest(new { message = "EXCEPTION", error = ex.Message, stack = ex.StackTrace });
             }
-
-            var customer = new Customer
-            {
-                NameEn = dto.NameEn ?? "",
-                NameAr = dto.NameAr ?? "",
-                Email = dto.Email ?? "",
-                Phone = dto.Phone ?? "",
-                Photo = photoFileName ?? "",
-                PasswordHash = ComputeSha256Hash(dto.Password ?? ""),
-
-                GenderAr = genderAr,
-                GenderEn = genderEn,
-
-                StatusAr = "نشط",
-                StatusEn = "Active",
-
-                LastLoginDateTimeUtc = nowUtc,
-                UpdateDateTimeUtc = nowUtc,
-                DateOfBirth = dto.DateOfBirth.HasValue ? DateOnly.FromDateTime(dto.DateOfBirth.Value) : null
-            };
-
-            bool result = await _customerService.AddUser(customer);
-
-            if (result)
-            {
-                return Ok(new { message = "User Added Successfully" });
-            }
-            else
-            {
-                return BadRequest(new { message = "Failed to Add User" });
-            }
-
         }
+
 
         private string ComputeSha256Hash(string rawData)
         {
